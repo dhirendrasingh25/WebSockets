@@ -30,17 +30,17 @@ const io = new Server(server, {
 // Using Middlewares Here
 app.use(express.json());
 app.use(cors());
-io.use((socket, next) => {
-  cookieParser()(socket.request, socket.request.res, (err) => {
-    if (err) return next(new Error("Authentication Error"));
-    const token = socket.request.cookies.token;
-    if (!token) return next(new Error("Authentication Error"));
-    const decoded = jwt.verify(token, secretKey);
-    if (!decoded) return next(new Error("Authentication Error"));
-    // console.log("Here");
-    next();
-  });
-});
+// io.use((socket, next) => {
+//   cookieParser()(socket.request, socket.request.res, (err) => {
+//     if (err) return next(new Error("Authentication Error"));
+//     const token = socket.request.cookies.token;
+//     if (!token) return next(new Error("Authentication Error"));
+//     const decoded = jwt.verify(token, secretKey);
+//     if (!decoded) return next(new Error("Authentication Error"));
+//     // console.log("Here");
+//     next();
+//   });
+// });
 
 // Socket Connection
 io.on("connection", (socket) => {
